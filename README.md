@@ -1,2 +1,1 @@
-# node-react-barquiz
-# node-react-barquiz
+Barquiz managment program.

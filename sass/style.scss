@@ -1,0 +1,30 @@
+.SeasonPreview {
+  margin: 1em;
+  border: 1px solid #ccc;
+
+  .season-name {
+    border-bottom: 1px solid #ccc;
+    padding: 0.25em 0.5em;
+    font-weight: bold;
+    background-color: #eee;
+
+    .host-name {
+    padding: 0.5em;
+    float: right;
+  }
+  }
+
+}
+
+.link {
+  cursor: pointer;
+}
+
+.home-link {
+  margin-top: 1em;
+  color: #0000ee;
+}
+
+.img-circle {
+    border-radius: 50%;
+}
