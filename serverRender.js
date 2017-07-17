@@ -16,9 +16,9 @@ const getApiUrl = seasonId => {
 const getInitialData = (seasonId, apiData) => {
     if (seasonId) {
         return {
-            currentSeasonId: apiData.id,
+            currentSeasonId: apiData._id,
             seasons: {
-                [apiData.id]: apiData
+                [apiData._id]: apiData
             }
         };
     }

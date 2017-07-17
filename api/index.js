@@ -1,5 +1,5 @@
 import express from 'express';
-import { MongoClient } from 'mongodb';
+import { MongoClient, ObjectID } from 'mongodb';
 import assert from 'assert';
 import config from '../config';
 
@@ -16,7 +16,6 @@ router.get('/seasons', (req, res) => {
     let seasons = {}
     mdb.collection('seasons').find({})
         .project({
-            id: 1,
             hostName: 1,
             seasonName: 1
         })
@@ -27,16 +26,15 @@ router.get('/seasons', (req, res) => {
             res.send({seasons});
             return;
         }
-        seasons[season.id] = season;
+        seasons[season._id] = season;
         });
 });
 
 router.get('/games/:gameIds', (req, res) => {
-    const gameIds = req.params.gameIds.split(',').map(Number);
+    const gameIds = req.params.gameIds.split(',').map(ObjectID);
     let games = {}
-    mdb.collection('games').find({id: {$in: gameIds}})
+    mdb.collection('games').find({_id: {$in: gameIds}})
          .project({
-            id: 1,
             hostName: 1,
             venueName: 1,
             gameDate: 1
@@ -48,15 +46,17 @@ router.get('/games/:gameIds', (req, res) => {
             res.send({games});
             return;
         }
-        games[game.id] = game;
+        games[game._id] = game;
         });
 });
 
 router.get('/seasons/:seasonId', (req, res) => {
     mdb.collection('seasons')
-        .findOne({id: Number(req.params.seasonId)})
+        .findOne({_id: ObjectID(req.params.seasonId)})
         .then(season => res.send(season))
         .catch(console.error);
 });
+
+router.post('/games')
 
 export default router;

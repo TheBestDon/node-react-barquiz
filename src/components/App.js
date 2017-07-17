@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Header from './Header';
 import SeasonList from './SeasonList';
 import Season from './Season';
+import Dashboard from './Dashboard';
 import * as api from '../api';
 import PropTypes from 'prop-types';
 
@@ -42,10 +43,10 @@ fetchSeason = (seasonId) => {
         );
          api.fetchSeason(seasonId).then(season => {
              this.setState({
-                 currentSeasonId: season.id,
+                 currentSeasonId: season._id,
                  seasons: {
                      ...this.state.seasons,
-                    [season.id]: season
+                    [season._id]: season
                  }
              });
          });
@@ -111,6 +112,7 @@ fetchSeason = (seasonId) => {
         return ( 
           <div className = "App" >
             <Header message = { this.pageHeader() }/>
+            <Dashboard />
            {this.currentContent()}
             </div>
         );

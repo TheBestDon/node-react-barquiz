@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 class SeasonPreview extends Component {
     handleClick = () => {
-        this.props.onClick(this.props.id);
+        this.props.onClick(this.props._id);
     };
     render() {
         return ( <div className = "link SeasonPreview"
@@ -22,7 +22,7 @@ class SeasonPreview extends Component {
 }
 
 SeasonPreview.propTypes = {
-    id: PropTypes.number.isRequired,
+    _id: PropTypes.string.isRequired,
     hostName: PropTypes.string.isRequired,
     seasonName: PropTypes.string.isRequired,
     onClick: PropTypes.func.isRequired,
