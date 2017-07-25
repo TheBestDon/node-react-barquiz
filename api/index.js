@@ -4,7 +4,7 @@ import assert from 'assert';
 import config from '../config';
 import _ from 'lodash';
 import { mongoose } from '../db/mongoose';
-import {User} from '../model/user';
+import { User } from '../model/user';
 import { authenticate } from '../middleware/authenticate';
 
 let mdb;
