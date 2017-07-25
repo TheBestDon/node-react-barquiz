@@ -2,6 +2,9 @@ import express from 'express';
 import { MongoClient, ObjectID } from 'mongodb';
 import assert from 'assert';
 import config from '../config';
+import _ from 'lodash';
+import { mongoose } from '../db/mongoose';
+import {User} from '../model/user';
 
 let mdb;
 MongoClient.connect(config.mongodbUri, (err, db) => {
@@ -57,6 +60,17 @@ router.get('/seasons/:seasonId', (req, res) => {
         .catch(console.error);
 });
 
-router.post('/games')
+router.post('/users', (req, res) => {
+   var body = _.pick(req.body, ['email', 'password']);
+   var user = new User(body);
+
+  user.save().then(() => {
+    return user.generateAuthToken();
+  }).then((token) => {
+      res.header('x-auth', token).send(user);
+    }).catch((e) => {
+    res.status(400).send(e);
+  })
+});
 
 export default router;
