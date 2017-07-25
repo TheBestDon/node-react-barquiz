@@ -5,6 +5,7 @@ import config from '../config';
 import _ from 'lodash';
 import { mongoose } from '../db/mongoose';
 import {User} from '../model/user';
+import {authenticate} from '../middleware/authenticate';
 
 let mdb;
 MongoClient.connect(config.mongodbUri, (err, db) => {
@@ -71,6 +72,10 @@ router.post('/users', (req, res) => {
     }).catch((e) => {
     res.status(400).send(e);
   })
+});
+
+router.get('/users/me', authenticate, (req, res) => {
+   res.send(req.user);
 });
 
 export default router;
