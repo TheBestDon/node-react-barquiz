@@ -1,4 +1,4 @@
-import {User} from '../model/user';
+import { User } from '../model/user';
 
 var authenticate = (req, res, next) => {
     var token = req.header('x-auth');
