@@ -3,7 +3,7 @@ import Header from './Header';
 import SeasonList from './SeasonList';
 import Season from './Season';
 import Dashboard from './Dashboard';
-import * as api from '../api';
+import * as api from './../api';
 import PropTypes from 'prop-types';
 
 
@@ -112,7 +112,6 @@ fetchSeason = (seasonId) => {
         return ( 
           <div className = "App" >
             <Header message = { this.pageHeader() }/>
-            <Dashboard />
            {this.currentContent()}
             </div>
         );
