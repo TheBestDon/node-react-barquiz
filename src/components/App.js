@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Header from './Header';
 import SeasonList from './SeasonList';
 import Season from './Season';
-import Dashboard from './Dashboard';
+import Login from './Login';
 import * as api from './../api';
 import PropTypes from 'prop-types';
 
@@ -112,6 +112,7 @@ fetchSeason = (seasonId) => {
         return ( 
           <div className = "App" >
             <Header message = { this.pageHeader() }/>
+            <Login />
            {this.currentContent()}
             </div>
         );
